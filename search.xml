@@ -3,15 +3,18 @@
   <entry>
     <title>小程序安全测试--微信（1）</title>
     <url>/2021/09/03/test/</url>
-    <content><![CDATA[<h1 id="小程序测试"><a href="#小程序测试" class="headerlink" title="小程序测试"></a>小程序测试</h1><h2 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h2><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
+    <content><![CDATA[<h1 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h1><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
 </code></pre>
 <span id="more"></span>    
 
 <p>app端解包<br>python (<a href="https://github.com/leo9960/wechat-app-unpack">https://github.com/leo9960/wechat-app-unpack</a>)<br>nodejs 也有编译好的客户端 (<a href="https://github.com/xuedingmiaojun/mp-unpack">https://github.com/xuedingmiaojun/mp-unpack</a>)</p>
 <p>pc端解包<br>pc端可能带加密，所以需要先转码<br>(<a href="https://github.com/maotoumao/wxpc-miniprogram-decryption">https://github.com/maotoumao/wxpc-miniprogram-decryption</a>)<br>原理：<br>(<a href="https://juejin.cn/post/6888348237242040327">https://juejin.cn/post/6888348237242040327</a>)<br>(<a href="https://github.com/BlackTrace/pc_wxapkg_decrypt">https://github.com/BlackTrace/pc_wxapkg_decrypt</a>)</p>
-<p>mac路径：</p>
+<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>mac路径：</p>
 <p>~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat/Library/Caches/xinWeChat/817f39087ae1fbf97dc81798419249c7/WeApp/LocalCache/release/wx3ba512d53df66a75/4/Module</p>
 <p><img src="/images/mac%E8%B7%AF%E5%BE%84.png" alt="mac路径"></p>
 ]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
   </entry>
 </search>
