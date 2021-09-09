@@ -11,7 +11,9 @@
 <p>pc端解包<br>pc端可能带加密，所以需要先转码<br>(<a href="https://github.com/maotoumao/wxpc-miniprogram-decryption">https://github.com/maotoumao/wxpc-miniprogram-decryption</a>)<br>原理：<br>(<a href="https://juejin.cn/post/6888348237242040327">https://juejin.cn/post/6888348237242040327</a>)<br>(<a href="https://github.com/BlackTrace/pc_wxapkg_decrypt">https://github.com/BlackTrace/pc_wxapkg_decrypt</a>)</p>
 <h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>mac路径：</p>
 <p>~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat/Library/Caches/xinWeChat/817f39087ae1fbf97dc81798419249c7/WeApp/LocalCache/release/wx3ba512d53df66a75/4/Module</p>
-<p><img src="/images/mac%E8%B7%AF%E5%BE%84.png" alt="mac路径"></p>
+<p>Android：<br>/data/data/com.tencent.mm/MicroMsg/32位长文件/appbrand/pkg</p>
+<p>IOS：<br>/var/mobile/Containers/Data/Application/{程序UUID}/Library/WechatPrivate/{用户ID}/WeApp/LocalCache/release/{小程序ID}/<br><img src="/images/mac%E8%B7%AF%E5%BE%84.png" alt="mac路径"></p>
+<p>以某球影城为例：<br>从Android复制过来4个包，一个主文件，三个子文件<br><img src="/images/%E8%A7%A3%E5%8C%85.jpg"></p>
 ]]></content>
       <categories>
         <category>小程序</category>
