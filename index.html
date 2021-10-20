@@ -89,7 +89,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li>
   </ul>
 </nav>
 
@@ -135,13 +135,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -171,6 +171,102 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="Kid">
+      <meta itemprop="description" content="行到水穷处，坐看云起时">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kid">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/" class="post-title-link" itemprop="url">Crazyradio PA---罗技 鼠标劫持</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-24 09:33:00" itemprop="dateCreated datePublished" datetime="2021-09-24T09:33:00Z">2021-09-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-20 15:35:19" itemprop="dateModified" datetime="2021-10-20T15:35:19Z">2021-10-20</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IOT/" itemprop="url" rel="index"><span itemprop="name">IOT</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>  <a target="_blank" rel="noopener" href="https://www.bettercap.org/modules/hid/">https://www.bettercap.org/modules/hid/</a><br>  <a target="_blank" rel="noopener" href="https://github.com/BastilleResearch/nrf-research-firmware">https://github.com/BastilleResearch/nrf-research-firmware</a><br>  <a target="_blank" rel="noopener" href="https://github.com/hak5darren">https://github.com/hak5darren</a></p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><pre><code>Atiify
+Crazyradio PA
+Logitech M186
+使用攻击脚本：https://github.com/BastilleResearch/mousejack
+            原：https://github.com/RFStorm/
+bettercap也可以不使用，但使用hid模块，通过数据传输总量有助于准确找出鼠标地址
+</code></pre>
+<h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>  apt install sdcc binutils<br>  pip install pyusb<br>  pip install platformio</p>
+<h1 id="烧录（也可跳过，烧录需要usb2-0的接口）"><a href="#烧录（也可跳过，烧录需要usb2-0的接口）" class="headerlink" title="烧录（也可跳过，烧录需要usb2.0的接口）"></a>烧录（也可跳过，烧录需要usb2.0的接口）</h1><p>  git clone <a target="_blank" rel="noopener" href="https://github.com/bitcraze/crazyradio-firmware">https://github.com/bitcraze/crazyradio-firmware</a><br>  cd crazyradio-firmware<br>  python usbtools/launchBootloader.py</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
