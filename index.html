@@ -89,7 +89,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
   </ul>
 </nav>
 
@@ -135,13 +135,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -171,6 +171,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="Kid">
+      <meta itemprop="description" content="行到水穷处，坐看云起时">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kid">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">某蜂app抓包分析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-09 19:33:00" itemprop="dateCreated datePublished" datetime="2021-10-09T19:33:00Z">2021-10-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-10 10:11:46" itemprop="dateModified" datetime="2021-11-10T10:11:46Z">2021-11-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>尝试解除flutter<br>hook java sll<br>内存dump双向认证证书<br>导入burp抓包测试</p>
+<p>1.flutter<br>参考：<a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-261941.htm">https://bbs.pediy.com/thread-261941.htm</a></p>
+<p>apk解压后发现flutter的so文件<br>以为是flutter问题<br>找到字节进行hook（ida–&gt;ssl_client–&gt;x–&gt;取字节 ）</p>
+<p>2.java-ssl绕过<br>root手机配置好后进行抓包，发现不能抓<br>hook java-ssl<br>登录页面发包403显示 证书未发送</p>
+<p>3.双向认证<br>除了自己写<br>可以用工具hooker<br><a target="_blank" rel="noopener" href="https://github.com/CreditTone/hooker">https://github.com/CreditTone/hooker</a><br>客户端必调java.security.KeyStore的getPrivateKey和getCertificate方法<br>hook dump证书，密码写入<br>导入 burp </p>
+<p>抓包发现逻辑漏洞。 </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

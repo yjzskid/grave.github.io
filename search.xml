@@ -96,4 +96,18 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
         <category>小程序</category>
       </categories>
   </entry>
+  <entry>
+    <title>某蜂app抓包分析</title>
+    <url>/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>尝试解除flutter<br>hook java sll<br>内存dump双向认证证书<br>导入burp抓包测试</p>
+<p>1.flutter<br>参考：<a href="https://bbs.pediy.com/thread-261941.htm">https://bbs.pediy.com/thread-261941.htm</a></p>
+<p>apk解压后发现flutter的so文件<br>以为是flutter问题<br>找到字节进行hook（ida–&gt;ssl_client–&gt;x–&gt;取字节 ）</p>
+<p>2.java-ssl绕过<br>root手机配置好后进行抓包，发现不能抓<br>hook java-ssl<br>登录页面发包403显示 证书未发送</p>
+<p>3.双向认证<br>除了自己写<br>可以用工具hooker<br><a href="https://github.com/CreditTone/hooker">https://github.com/CreditTone/hooker</a><br>客户端必调java.security.KeyStore的getPrivateKey和getCertificate方法<br>hook dump证书，密码写入<br>导入 burp </p>
+<p>抓包发现逻辑漏洞。 </p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
 </search>
