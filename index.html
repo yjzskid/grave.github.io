@@ -89,7 +89,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a></li>
   </ul>
 </nav>
 
@@ -135,7 +135,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -604,6 +604,106 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/22/%E8%93%9D%E7%89%99%E6%8A%93%E5%8C%851/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="Kid">
+      <meta itemprop="description" content="行到水穷处，坐看云起时">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kid">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/22/%E8%93%9D%E7%89%99%E6%8A%93%E5%8C%851/" class="post-title-link" itemprop="url">Ble抓包1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-22 10:33:00" itemprop="dateCreated datePublished" datetime="2021-08-22T10:33:00Z">2021-08-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-21 12:01:37" itemprop="dateModified" datetime="2021-11-21T12:01:37Z">2021-11-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IOT/" itemprop="url" rel="index"><span itemprop="name">IOT</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-安装环境"><a href="#1-安装环境" class="headerlink" title="1.安装环境"></a>1.安装环境</h1><p>本次用的windows……</p>
+<p>wireshark  可用最新版本<br>nrf 板子 的wireshark 插件<br>驱动下载：<a target="_blank" rel="noopener" href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers</a><br>v3 需要python3</p>
+<p>v2需要python2</p>
+<p><a target="_blank" rel="noopener" href="https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF-Sniffer-for-Bluetooth-LE/Download#infotabs">https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF-Sniffer-for-Bluetooth-LE/Download#infotabs</a></p>
+<p>如下都使用的是 V3 示例</p>
+<h1 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h1><p>nrf 板子解压后<br>重点关注以下文件<br><img src="/images/BLE/jieya.png" alt="解压">   </p>
+<p>将 extcap 里面的文件移动到 wireshark 的extcap 下<br><img src="/images/BLE/2.png"></p>
+<p>将Profile_nRF_Sniffer_Bluetooth_LE 移到 wireshark 的profiles 下<br><img src="/images/BLE/3.png"></p>
+<h1 id="3-python-配置"><a href="#3-python-配置" class="headerlink" title="3.python 配置"></a>3.python 配置</h1><p>安装依赖：python3 -m pip install -r requirements.txt </p>
+<p>在extcap 中 执行 nrf_sniffer_ble.bat 不报错</p>
+<p>即可</p>
+<p><img src="/images/BLE/4.png"></p>
+<p>注意 如果报错 ：python3 找不到</p>
+<p>需修改输入 python时 显示 为 python3</p>
+<p>如图</p>
+<p><img src="/images/BLE/5.png"></p>
+<h1 id="4-插上板子-启动-wireshark"><a href="#4-插上板子-启动-wireshark" class="headerlink" title="4.插上板子 启动 wireshark"></a>4.插上板子 启动 wireshark</h1><p>即可看到 nrf sniffer的 接口 </p>
+<p>双击即可抓包</p>
+<p><img src="/images/BLE/6.png"></p>
+<h1 id="5-抓包"><a href="#5-抓包" class="headerlink" title="5.抓包"></a>5.抓包</h1><p>多连接几次，才可能抓到 连接包  协议为 ATT<br><img src="/images/BLE/7.png"></p>
+<p>防重放攻击方式： 假如时间戳，其他字段等</p>
+
       
     </div>
 
