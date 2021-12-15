@@ -29,7 +29,7 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
       </categories>
   </entry>
   <entry>
-    <title>arm64汇编</title>
+    <title>arm64汇编(1)</title>
     <url>/2021/12/06/arm64-hello,world/</url>
     <content><![CDATA[<h1 id="简单代码学习"><a href="#简单代码学习" class="headerlink" title="简单代码学习"></a>简单代码学习</h1><p>mac 使用android的工具进行 编译</p>
 <p>目录<br>/Users/xxx/Library/Android/sdk/ndk/21.4.7075529/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin</p>
@@ -41,6 +41,28 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 <h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>./arm-linux-androideabi-as -o hello.o hello.S<br>./arm-linux-androideabi-as -o hello hello.o</p>
 <p>将hello 拷贝到手机即可执行<br><img src="/images/arm/1.png" alt="hello,world"></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>MacOS 2021-9-21 inetloc复现</title>
+    <url>/2021/09/22/macos%E5%A4%8D%E7%8E%B0/</url>
+    <content><![CDATA[<h1 id="big-sur-lt-11-2-3-20D91）"><a href="#big-sur-lt-11-2-3-20D91）" class="headerlink" title="big sur&lt;=11.2.3 (20D91）"></a>big sur&lt;=11.2.3 (20D91）</h1><h1 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h1><pre><code>保存为hello.inetloc
+</code></pre>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>URL</key>
+    <string>FiLe:////////////////////////System/Applications/Calculator.app</string>
+  </dict>
+</plist>
+
+<span id="more"></span>    
+<p>双击执行</p>
+<p><img src="/images/cal.jpg" alt="计算器"></p>
+]]></content>
+      <categories>
+        <category>MacOS</category>
+      </categories>
   </entry>
   <entry>
     <title>IOS—lldb基础调试</title>
@@ -65,28 +87,6 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 ]]></content>
       <categories>
         <category>IOS</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>MacOS 2021-9-21 inetloc复现</title>
-    <url>/2021/09/22/macos%E5%A4%8D%E7%8E%B0/</url>
-    <content><![CDATA[<h1 id="big-sur-lt-11-2-3-20D91）"><a href="#big-sur-lt-11-2-3-20D91）" class="headerlink" title="big sur&lt;=11.2.3 (20D91）"></a>big sur&lt;=11.2.3 (20D91）</h1><h1 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h1><pre><code>保存为hello.inetloc
-</code></pre>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-    <key>URL</key>
-    <string>FiLe:////////////////////////System/Applications/Calculator.app</string>
-  </dict>
-</plist>
-
-<span id="more"></span>    
-<p>双击执行</p>
-<p><img src="/images/cal.jpg" alt="计算器"></p>
-]]></content>
-      <categories>
-        <category>MacOS</category>
       </categories>
   </entry>
   <entry>
