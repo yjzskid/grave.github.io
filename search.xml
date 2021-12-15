@@ -29,6 +29,45 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
       </categories>
   </entry>
   <entry>
+    <title>arm64汇编</title>
+    <url>/2021/12/06/arm64-hello,world/</url>
+    <content><![CDATA[<h1 id="简单代码学习"><a href="#简单代码学习" class="headerlink" title="简单代码学习"></a>简单代码学习</h1><p>mac 使用android的工具进行 编译</p>
+<p>目录<br>/Users/xxx/Library/Android/sdk/ndk/21.4.7075529/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin</p>
+<p>编辑hello.S</p>
+<p>代码<br><br><br>.text </p>
+<p>.globl _start</p>
+<p>_start:<br>        mov %r0, $1<br>        ldr %r1, =message<br>        mov %r2, $message_len<br>        mov %r7, $4<br>        swi $0<br>        mov %r0, $0<br>        mov %r7, $1<br>        swi $0<br>.data</p>
+<p>message:<br>        .ascii “hello,world!\n”<br>message_len = . -message<br><br></p>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>./arm-linux-androideabi-as -o hello.o hello.S<br>./arm-linux-androideabi-as -o hello hello.o</p>
+<p>将hello 拷贝到手机即可执行<br><img src="/images/arm/1.png" alt="hello,world"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>IOS—lldb基础调试</title>
+    <url>/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="越狱手机"><a href="#越狱手机" class="headerlink" title="越狱手机"></a>越狱手机</h1><p>ps -ef | grep 进程</p>
+<p>获得路径 /var/……</p>
+<p>debugserver -x backboard 0.0.0.0:1234  /var/……</p>
+<h1 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h1><p>lldb<br>进入</p>
+<span id="more"></span>  
+<p>process connect connect：//IP：port<br>b ptrace<br>c<br>p $x0<br>打印应该是30</p>
+<p>register write $x0 10</p>
+<p>绕过反调试<br>防止程序退出</p>
+<h1 id="获取地址"><a href="#获取地址" class="headerlink" title="获取地址"></a>获取地址</h1><p>Class-dump 头文件</p>
+<p><img src="/images/ios-lldb/1.png" alt="class-dump"></p>
+<p>点开 选getsessionid 进行测试<br><img src="/images/ios-lldb/2.png"></p>
+<h1 id="获取基地址"><a href="#获取基地址" class="headerlink" title="获取基地址"></a>获取基地址</h1><p>ida 打开 解压后的ipa包中的可执行文件</p>
+<p><img src="/images/ios-lldb/3.png" alt="获取基地址"></p>
+<h1 id="获取当前地址"><a href="#获取当前地址" class="headerlink" title="获取当前地址"></a>获取当前地址</h1><p>lldb 里 输入 imge list -o -f “进程名”<br><img src="/images/ios-lldb/4.png" alt="获取当前地址"></p>
+<h1 id="获取寄存器数值"><a href="#获取寄存器数值" class="headerlink" title="获取寄存器数值"></a>获取寄存器数值</h1><p>在登录处设置断点<br>breakpoint s -a 0x000000000064c000+0000000100857320</p>
+<p><img src="/images/ios-lldb/5.png" alt="断点打印"></p>
+<p>打印寄存器<br>出数据<br><img src="/images/ios-lldb/6.png" alt="断点打印"></p>
+]]></content>
+      <categories>
+        <category>IOS</category>
+      </categories>
+  </entry>
+  <entry>
     <title>MacOS 2021-9-21 inetloc复现</title>
     <url>/2021/09/22/macos%E5%A4%8D%E7%8E%B0/</url>
     <content><![CDATA[<h1 id="big-sur-lt-11-2-3-20D91）"><a href="#big-sur-lt-11-2-3-20D91）" class="headerlink" title="big sur&lt;=11.2.3 (20D91）"></a>big sur&lt;=11.2.3 (20D91）</h1><h1 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h1><pre><code>保存为hello.inetloc
@@ -69,31 +108,6 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 ]]></content>
       <categories>
         <category>小程序</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>IOS—lldb基础调试</title>
-    <url>/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="越狱手机"><a href="#越狱手机" class="headerlink" title="越狱手机"></a>越狱手机</h1><p>ps -ef | grep 进程</p>
-<p>获得路径 /var/……</p>
-<p>debugserver -x backboard 0.0.0.0:1234  /var/……</p>
-<h1 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h1><p>lldb<br>进入</p>
-<span id="more"></span>  
-<p>process connect connect：//IP：port<br>b ptrace<br>c<br>p $x0<br>打印应该是30</p>
-<p>register write $x0 10</p>
-<p>绕过反调试<br>防止程序退出</p>
-<h1 id="获取地址"><a href="#获取地址" class="headerlink" title="获取地址"></a>获取地址</h1><p>Class-dump 头文件</p>
-<p><img src="/images/ios-lldb/1.png" alt="class-dump"></p>
-<p>点开 选getsessionid 进行测试<br><img src="/images/ios-lldb/2.png"></p>
-<h1 id="获取基地址"><a href="#获取基地址" class="headerlink" title="获取基地址"></a>获取基地址</h1><p>ida 打开 解压后的ipa包中的可执行文件</p>
-<p><img src="/images/ios-lldb/3.png" alt="获取基地址"></p>
-<h1 id="获取当前地址"><a href="#获取当前地址" class="headerlink" title="获取当前地址"></a>获取当前地址</h1><p>lldb 里 输入 imge list -o -f “进程名”<br><img src="/images/ios-lldb/4.png" alt="获取当前地址"></p>
-<h1 id="获取寄存器数值"><a href="#获取寄存器数值" class="headerlink" title="获取寄存器数值"></a>获取寄存器数值</h1><p>在登录处设置断点<br>breakpoint s -a 0x000000000064c000+0000000100857320</p>
-<p><img src="/images/ios-lldb/5.png" alt="断点打印"></p>
-<p>打印寄存器<br>出数据<br><img src="/images/ios-lldb/6.png" alt="断点打印"></p>
-]]></content>
-      <categories>
-        <category>IOS</category>
       </categories>
   </entry>
   <entry>
